@@ -9,7 +9,7 @@ import Wave from 'react-wavify'
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-<div>
+<div className={styles.background}>
 <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
@@ -29,8 +29,8 @@ function HomepageHeader() {
           paused={false}
           options={{
             height: 20,
-            amplitude: 30,
-            speed: 0.15,
+            amplitude: 35,
+            speed: 0.10,
             points: 6
           }}
           />

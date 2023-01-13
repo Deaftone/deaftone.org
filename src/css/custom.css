@@ -17,8 +17,8 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-footer-background-color: #2f2f2f;
 }
+
 .wave {
-  background-color: var(--ifm-color-primary);
   display: flex !important;
   margin-bottom: -50px;
 }

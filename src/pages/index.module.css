@@ -13,8 +13,11 @@
   display: flex;
   padding-top: 10rem;
   padding-bottom: 10rem;
+  background: none;
 }
-
+.background {
+  background-image: url('../../static/img/marble_bk.png');
+}
 
 @media screen and (max-width: 996px) {
   .heroBanner {

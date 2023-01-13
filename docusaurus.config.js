@@ -52,7 +52,7 @@ const config = {
         title: 'Deaftone',
         logo: {
           alt: 'Deaftone Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           {
