@@ -29,33 +29,25 @@ const config = {
 
   presets: [
     [
-      'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      "docusaurus-preset-openapi",
+      /** @type {import('docusaurus-preset-openapi').Options} */
+      {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          sidebarPath: require.resolve("./sidebars.js"),
+          routeBasePath: "/",
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
-      }),
+      },
     ],
   ],
 
   themeConfig:
+  
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      
       navbar: {
         title: 'Deaftone',
         logo: {
@@ -67,8 +59,11 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Setup',
+            label: 'Documentation',
           },
+          {to: "/api", label: "API", position: "left" },
+          {to: "/clients", label: "Clients", position: "left" },
+
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/Ortygia/Deaftone',
@@ -84,8 +79,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Setup',
-                to: '/docs/intro',
+                label: 'Docs',
+                to: '/intro',
               },
             ],
           },
@@ -111,7 +106,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/Ortygia/Deaftone',
               },
             ],
           },
@@ -119,8 +114,10 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} Deaftone, Inc. Built with Docusaurus.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: darkCodeTheme
+      },
+      colorMode: {
+        disableSwitch: true,
       },
     }),
 };
