@@ -117,6 +117,7 @@ const config = {
         theme: darkCodeTheme
       },
       colorMode: {
+        defaultMode:"dark",
         disableSwitch: true,
       },
     }),
