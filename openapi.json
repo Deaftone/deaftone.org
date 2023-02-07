@@ -4,7 +4,8 @@
     "title": "deaftone",
     "description": "",
     "contact": {
-      "name": ""
+      "name": "",
+      "email": ""
     },
     "license": {
       "name": ""
@@ -17,7 +18,6 @@
         "tags": [
           "deaftone::handlers::albums"
         ],
-        "description": "",
         "operationId": "get_albums",
         "parameters": [
           {
@@ -55,7 +55,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/AlbumModel"
+                    "$ref": "#/components/schemas/entity.album.Model"
                   }
                 }
               }
@@ -80,7 +80,6 @@
         "tags": [
           "deaftone::handlers::albums"
         ],
-        "description": "",
         "operationId": "get_album",
         "parameters": [
           {
@@ -88,7 +87,14 @@
             "in": "path",
             "description": "Album Id",
             "required": true,
-            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "album_id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -134,7 +140,6 @@
         "tags": [
           "deaftone::handlers::albums"
         ],
-        "description": "",
         "operationId": "get_cover",
         "parameters": [
           {
@@ -142,7 +147,14 @@
             "in": "path",
             "description": "Album Id",
             "required": true,
-            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "album_id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -171,7 +183,6 @@
         "tags": [
           "deaftone::handlers::artists"
         ],
-        "description": "",
         "operationId": "get_artists",
         "parameters": [
           {
@@ -209,7 +220,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ArtistModel"
+                    "$ref": "#/components/schemas/entity.artist.Model"
                   }
                 }
               }
@@ -234,7 +245,6 @@
         "tags": [
           "deaftone::handlers::artists"
         ],
-        "description": "",
         "operationId": "get_artist",
         "parameters": [
           {
@@ -242,7 +252,14 @@
             "in": "path",
             "description": "Artist Id",
             "required": true,
-            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "artist_id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -288,7 +305,6 @@
         "tags": [
           "deaftone::handlers::songs"
         ],
-        "description": "",
         "operationId": "get_song",
         "parameters": [
           {
@@ -296,7 +312,14 @@
             "in": "path",
             "description": "Song Id",
             "required": true,
-            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "song_id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -332,7 +355,6 @@
         "tags": [
           "deaftone::handlers::streams"
         ],
-        "description": "",
         "operationId": "stream_handler",
         "parameters": [
           {
@@ -340,7 +362,14 @@
             "in": "path",
             "description": "Song Id",
             "required": true,
-            "deprecated": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "song_id",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }
@@ -374,7 +403,165 @@
   },
   "components": {
     "schemas": {
-      "AlbumModel": {
+      "AlbumResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "artist",
+          "artist_id",
+          "album_description",
+          "year",
+          "song_count",
+          "songs"
+        ],
+        "properties": {
+          "album_description": {
+            "type": "string"
+          },
+          "artist": {
+            "type": "string"
+          },
+          "artist_id": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "song_count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "songs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/entity.song.Model"
+            }
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ArtistResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "image",
+          "bio",
+          "albums"
+        ],
+        "properties": {
+          "albums": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/entity.album.Model"
+            }
+          },
+          "bio": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetAllAlbums": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sort": {
+            "type": "string",
+            "example": "sort = name | artist_name | year | latest"
+          }
+        }
+      },
+      "GetAllArtists": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sort": {
+            "type": "string",
+            "example": "sort = name | latest"
+          }
+        }
+      },
+      "SongResponse": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "title",
+          "disk",
+          "artist",
+          "album_name",
+          "length",
+          "year",
+          "album_id",
+          "liked"
+        ],
+        "properties": {
+          "album_id": {
+            "type": "string"
+          },
+          "album_name": {
+            "type": "string"
+          },
+          "artist": {
+            "type": "string"
+          },
+          "disk": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "string"
+          },
+          "length": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "liked": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "entity.album.Model": {
         "type": "object",
         "required": [
           "id",
@@ -485,51 +672,7 @@
           }
         }
       },
-      "AlbumResponse": {
-        "type": "object",
-        "required": [
-          "id",
-          "name",
-          "artist",
-          "artist_id",
-          "album_description",
-          "year",
-          "song_count",
-          "songs"
-        ],
-        "properties": {
-          "album_description": {
-            "type": "string"
-          },
-          "artist": {
-            "type": "string"
-          },
-          "artist_id": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "song_count": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "songs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SongModel"
-            }
-          },
-          "year": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "ArtistModel": {
+      "entity.artist.Model": {
         "type": "object",
         "required": [
           "id",
@@ -564,71 +707,7 @@
           }
         }
       },
-      "ArtistResponse": {
-        "type": "object",
-        "required": [
-          "id",
-          "name",
-          "image",
-          "bio",
-          "albums"
-        ],
-        "properties": {
-          "albums": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/AlbumModel"
-            }
-          },
-          "bio": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "image": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "GetAllAlbums": {
-        "type": "object",
-        "properties": {
-          "page": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "sort": {
-            "type": "string",
-            "example": "sort = name | artist_name | year | latest"
-          }
-        }
-      },
-      "GetAllArtists": {
-        "type": "object",
-        "properties": {
-          "page": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "sort": {
-            "type": "string",
-            "example": "sort = name | latest"
-          }
-        }
-      },
-      "SongModel": {
+      "entity.song.Model": {
         "type": "object",
         "required": [
           "id",
@@ -861,56 +940,6 @@
             "type": "string"
           },
           "work_disambig": {
-            "type": "string"
-          },
-          "year": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "SongResponse": {
-        "type": "object",
-        "required": [
-          "id",
-          "path",
-          "title",
-          "disk",
-          "artist",
-          "album_name",
-          "length",
-          "year",
-          "album_id",
-          "liked"
-        ],
-        "properties": {
-          "album_id": {
-            "type": "string"
-          },
-          "album_name": {
-            "type": "string"
-          },
-          "artist": {
-            "type": "string"
-          },
-          "disk": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "id": {
-            "type": "string"
-          },
-          "length": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "liked": {
-            "type": "boolean"
-          },
-          "path": {
-            "type": "string"
-          },
-          "title": {
             "type": "string"
           },
           "year": {
